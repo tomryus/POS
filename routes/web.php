@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('admin/category', 'CategoryController');
+
+Route::group(['middleware' => 'auth'], function() 
+{
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('admin/category/trash', 'CategoryController@trash')->name('category.trash');
+    Route::get('admin/category/{id}/restore', 'CategoryController@restore')->name('category.restore');
+    Route::delete('admin/category/{id}/deletepermanent', 'CategoryController@deletepermanent')->name('category.deletepermanent');
+    Route::resource('admin/category', 'CategoryController'); 
+
+    Route::resource('admin/product', 'ProductController');
+});
+
+

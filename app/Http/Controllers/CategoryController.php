@@ -14,8 +14,11 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $category = Category::all();
+    {   
+        
+        $category = Category::paginate(8);
+
+
         return view('category/index',['categories' => $category]);
     }
 
@@ -26,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -69,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category/edit',['category'=>$category]);
     }
 
     /**
@@ -81,7 +84,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        \Validator::make($request->all(),[
+            'name' => "required|min:4|Unique:categories",
+            'description'   => "required|string",
+        ])->validate();
+        $category->update([
+            'name'          => $request->name,
+            'description'   => $request->description
+        ]);
+
+        return redirect()->route('category.index')->with('status','data berhasil diedit');
     }
 
     /**
@@ -92,6 +104,25 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->Delete();
+        return redirect()->route('category.index')->with('status','data berhasil dihapus ke temporary');
+    }
+
+    public function trash()
+    {
+        $category = Category::onlyTrashed()->get();
+        return view('category/trash',['categories'=>$category]);
+    }
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+        $category->restore();
+        return redirect()->route('category.index')->with('status','data berhasil dikembalikan');
+    }
+    public function deletepermanent($id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+        $category->forceDelete();
+        return redirect()->route('category.index')->with('status','data berhasil dihapus permanent');
     }
 }

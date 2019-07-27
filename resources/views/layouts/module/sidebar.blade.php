@@ -2,9 +2,9 @@
     <div class="sidebar-scroll">
         <nav>
             <ul class="nav">
-                <li><a href="/home" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="/" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                 <li><a href={{route('category.index')}} class=""><i class="fa fa-pencil"></i> <span>Category</span></a></li>
-                <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+                <li><a href="{{route('product.index')}}" class=""><i class="lnr lnr-code"></i> <span>Product</span></a></li>
                 <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                 <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
                 <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>

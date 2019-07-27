@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','List Category')
+@section('title','List Product')
 
 @section('content')
 <div class="container-fluid">
@@ -8,13 +8,13 @@
         <div class="panel-heading">
             <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Manajemen Kategori</h1>
+                        <h1 class="m-0 text-dark">Manajemen Product</h1>
                     </div>
                     <br>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route('category.index')}}">Kategori</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('product.index')}}">Product</a></li>
                         </ol>
                     </div>
                 </div>
@@ -23,33 +23,8 @@
 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-5">
-                <div class="metric">
-                    <h2 class="panel-title">Tambah Data</h2><br>
-                    <form role="form" action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Kategori</label>
-                            <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}" id="name" required>
-                            <div class="invalid-feedback">
-                                {{$errors->first('name')}}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <label for="description">Deskripsi</label>
-                                <textarea name="description" id="description" cols="5" rows="5" class="form-control {{ $errors->has('description') ? 'is-invalid':'' }}"></textarea>
-                                <div class="invalid-feedback">
-                                {{$errors->first('description')}}
-                                </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary">Simpan</button>
-                        </div>
-                        </form>
-                </div>
-            </div>
-                    
-            <div class="col-md-7">
+           
+            <div class="col-md-12">
                 <div class="metric">
                     @php
                         $dt = new DateTime();
@@ -68,20 +43,30 @@
                         <thead>
                             <tr>
                                 <td>NO</td>
-                                <td>Nama</td>
-                                <td>Deskripsi</td>
-                                <td>Action</td>
+                                <th>Nama Produk</th>
+                                <th>Deskripsi</th>
+                                <th>Stock</th>
+                                <th>Harga</th>
+                                <th>Category</th>
+                                <th>Tanggal</th>
+                                <th>Foto</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         @php
                             $no = 1;
                         @endphp
                         <tbody>
-                            @foreach ($categories as $item)
+                            @foreach ($product as $item)
                             <tr>
                                 <td>{{$no}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->description}}</td>
+                                <td>{{$item->stock}}</td>
+                                <td>{{$item->price}}</td>
+                                <td>{{$item->category->name}}</td>
+                                <td>{{$item->updated_at}}</td>
+                                <td>{{$item->photo}}</td>
                                 <td>
                                     <a href="{{route('category.edit', $item->id)}}" class="btn btn-light"><i class="fa fa-pencil"></i> <span>Edit</span></a>
                                     <a href="javascript:void(0)" onclick="$(this).find('form').submit()" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete
@@ -99,7 +84,7 @@
                         </tbody>
                         
                         </table>
-                        {{$categories->appends(Request::all())->links()}}
+                        {{$product->appends(Request::all())->links()}}
                 </div>
             </div>
         </div>
