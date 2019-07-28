@@ -17,7 +17,7 @@
                 </li>               
                 <li><a href="{{route('user.index')}}" class=""><i class="lnr lnr-user"></i> <span>User</span></a></li>
                 @endrole
-                <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
+                <li><a href="{{route('order.create')}}" class=""><i class="lnr lnr-cart"></i> <span>order</span></a></li>
                 <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
                 <li>
                     <a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

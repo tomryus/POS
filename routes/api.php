@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/product/{id}', 'OrderController@getProduct');
+Route::post('/cart', 'OrderController@addToCart');
+Route::get('/cart', 'OrderController@getCart');
+Route::delete('/cart/{id}', 'OrderController@removeCart');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

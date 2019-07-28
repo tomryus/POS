@@ -28,7 +28,7 @@
                 <div class="metric">
                     <h2>Edit User</h2><br>
                     <br>
-                    <form role="form" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
@@ -48,20 +48,20 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid':'' }}" id="password" required>
+                            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid':'' }}" id="password">
                             <div class="invalid-feedback">
                                 {{$errors->first('password')}}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cpassword">Confirmation Password</label>
-                            <input type="password" name="cpassword" class="form-control {{ $errors->has('cpassword') ? 'is-invalid':'' }}" id="cpassword" required>
+                            <input type="password" name="cpassword" class="form-control {{ $errors->has('cpassword') ? 'is-invalid':'' }}" id="cpassword">
                             <div class="invalid-feedback">
                                 {{$errors->first('cpassword')}}
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary">Simpan</button>
+                            <button class="btn btn-primary">Edit</button>
                         </div>
                         </form>
 

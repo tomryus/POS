@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\model\Order_detail;
+use App\model\Product;
 use Illuminate\Http\Request;
 
 class OrderDetailController extends Controller
@@ -24,7 +25,7 @@ class OrderDetailController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

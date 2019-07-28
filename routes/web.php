@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth', 'middleware'=>'verified'], function()
     Route::delete('admin/product/{id}/deletepermanent', 'ProductController@deletepermanent')->name('product.deletepermanent');
     Route::resource('admin/product', 'ProductController');
 
+    Route::resource('admin/order', 'OrderController');
+
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('admin/role', 'RoleController');
 

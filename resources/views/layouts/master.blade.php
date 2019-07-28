@@ -14,6 +14,7 @@
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	@yield('css')
 	<link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
@@ -56,12 +57,16 @@
     
 
 	<!-- Javascript -->
+	
 	<script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"> </script>
 	<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+	@yield('js')
 	<script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"> </script>
 	<script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"> </script>
 	<script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script>
-    <script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
+	<script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
+	
+	
 
     
 </body>

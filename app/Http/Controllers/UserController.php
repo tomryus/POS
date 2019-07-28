@@ -50,8 +50,9 @@ class UserController extends Controller
     {
         \Validator::make($request->all(),[
             'name'      => 'required|string|max:100',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:6',
+            'email'     => 'required|email|exists:users,email',
+            'password'  => 'nullable|min:8',
+            'cpassword' => 'nullable|required_with:password|same:password|min:8'
             ])->validate();
 
             $user = User::findOrFail($id);
