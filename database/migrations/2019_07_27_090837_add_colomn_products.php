@@ -14,8 +14,8 @@ class AddColomnProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('code')->unique();
-            $table->string('photo')->nullable();
+            $table->string('code')->after('id');
+            $table->string('photo')->after('category_id')->nullable();
             
         });
     }
