@@ -29,7 +29,15 @@ Route::group(['middleware' => 'auth', 'middleware'=>'verified'], function()
     Route::delete('admin/product/{id}/deletepermanent', 'ProductController@deletepermanent')->name('product.deletepermanent');
     Route::resource('admin/product', 'ProductController');
 
-    Route::resource('admin/order', 'OrderController');
+    Route::get('/checkout', 'OrderController@checkout')->name('order.checkout');
+    //Route::get('admin/order/checkout', 'OrderController@checkout')->name('order.checkout');
+    Route::post('/checkout', 'OrderController@storeOrder')->name('order.storeOrder');
+    Route::get('admin/order/create', 'OrderController@create')->name('order.create');
+    Route::get('admin/order/','OrderController@index')->name('order.index');
+    Route::get('admin/order/pdf/{invoice}', 'OrderController@invoicePdf')->name('order.pdf');
+    Route::get('admin/order/excel/{invoice}', 'OrderController@invoiceExcel')->name('order.excel');
+
+    Route::post('admin/customer/search', 'CustomerController@search');
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('admin/role', 'RoleController');
